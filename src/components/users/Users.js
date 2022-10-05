@@ -6,7 +6,7 @@ import './Users.css'
 const Users = () => {
     const users = useLoaderData();
     return (
-        <div>
+        <div className='mt-7'>
             <h1 className="text-6xl">There are {users.length} of Users</h1>
             <div className='users-border'>
                 {
