@@ -7,6 +7,7 @@ import Countries from './components/countries/Countries';
 import Error from './components/error/Error';
 import Home from './components/home/Home';
 import Landing from './components/landingPage/Landing';
+import PostDetail from './components/PostDetails/PostDetail';
 import Posts from './components/posts/Posts';
 import UserDetails from './components/userDetails/UserDetails';
 import Users from './components/users/Users';
@@ -33,7 +34,16 @@ function App() {
           },
           element: <UserDetails />
         },
-        { path: '/posts', element: <Posts /> },
+        {
+          path: '/posts',
+          loader: async () => fetch('https://jsonplaceholder.typicode.com/posts'),
+          element: <Posts />
+        },
+        {
+          path: '/post/:postId',
+          loader: async ({ params }) => fetch(`https://jsonplaceholder.typicode.com/posts/${params.postId}`),
+          element: <PostDetail />
+        },
         { path: '/countries', element: <Countries /> },
         { path: '/contact', element: <Contact /> },
       ]
