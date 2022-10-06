@@ -5,50 +5,26 @@ import About from './components/about/About';
 import Contact from './components/contact/Contact';
 import Countries from './components/countries/Countries';
 import Error from './components/error/Error';
-import Home from './components/home/Home';
-import Landing from './components/landingPage/Landing';
-import PostDetail from './components/PostDetails/PostDetail';
-import Posts from './components/posts/Posts';
-import UserDetails from './components/userDetails/UserDetails';
-import Users from './components/users/Users';
 import Main from './layout/Main';
+
 
 function App() {
   const router = createBrowserRouter([
     {
-      path: '/', element: <Main />, children: [
-        { path: '/', element: <Landing /> },
-        { path: '/home', element: <Home /> },
-        { path: '/about', element: <About /> },
-        {
-          path: '/users',
-          loader: async () => {
-            return fetch('https://jsonplaceholder.typicode.com/users')
-          },
-          element: <Users />
-        },
-        {
-          path: '/user/:userId',
-          loader: async ({ params }) => {
-            return fetch(`https://jsonplaceholder.typicode.com/users/${params.userId}`)
-          },
-          element: <UserDetails />
-        },
-        {
-          path: '/posts',
-          loader: async () => fetch('https://jsonplaceholder.typicode.com/posts'),
-          element: <Posts />
-        },
-        {
-          path: '/post/:postId',
-          loader: async ({ params }) => fetch(`https://jsonplaceholder.typicode.com/posts/${params.postId}`),
-          element: <PostDetail />
-        },
-        { path: '/countries', element: <Countries /> },
-        { path: '/contact', element: <Contact /> },
+      path: '/', element: <Main />, children: [{
+        path: '/about', element: <About />
+      },
+      {
+        path: '/countries', element: <Countries />
+      },
+      {
+        path: '/contact', element: <Contact />
+      }
       ]
     },
-    { path: '*', element: <Error /> }
+    {
+      path: '*', element: <Error />
+    }
   ])
   return (
     <div className='App'>
